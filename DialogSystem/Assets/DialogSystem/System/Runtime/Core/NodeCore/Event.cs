@@ -1,0 +1,50 @@
+﻿/**********************************************************
+*Author: wangjiaying
+*Date: 2016.6.16
+*Func:
+**********************************************************/
+
+using System.IO;
+
+namespace CryDialog.Runtime
+{
+
+    abstract public class Event : DialogNode
+    {
+
+        private bool _trigger = false;
+
+        protected sealed override EnumResult OnStart()
+        {
+            RegistEvent();
+            return EnumResult.Success;
+        }
+
+        protected sealed override EnumResult OnUpdate()
+        {
+            if (_trigger) return EnumResult.Success;
+            return EnumResult.Running;
+        }
+
+        protected sealed override void OnEnd()
+        {
+            _trigger = false;
+            UnRegistEvent();
+        }
+
+        protected abstract void RegistEvent();
+
+        protected abstract void UnRegistEvent();
+
+        protected void TriggerEvent()
+        {
+            _trigger = true;
+        }
+
+        protected override void OnGameLoad(BinaryReader r)
+        {
+            base.OnGameLoad(r);
+            RegistEvent();
+        }
+    }
+}

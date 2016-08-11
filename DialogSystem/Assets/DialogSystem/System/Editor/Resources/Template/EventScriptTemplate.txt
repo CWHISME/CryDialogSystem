@@ -1,0 +1,21 @@
+﻿/**********************************************************
+*Author: {UserName}
+*Date: {Date}
+*Func:
+**********************************************************/
+
+namespace CryDialog.Runtime
+{
+    public class {Name} : {Parent}
+    {
+	    protected override void RegistEvent()
+        {
+            
+        }
+
+        protected override void UnRegistEvent()
+        {
+            
+        }
+    }
+}
