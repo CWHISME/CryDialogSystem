@@ -60,12 +60,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DialogSystem\System\Runtime\Attributes\CategoryAttribute.cs" />
@@ -90,7 +84,9 @@
     <Compile Include="Assets\DialogSystem\System\Runtime\Core\UpdateNode.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Core\Value.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Core\ValueContainer.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\DialogManager.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\DialogObject.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\DialogRunner.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\EnumResult.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\EnumRunMode.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\ValueCompare.cs" />
@@ -98,16 +94,21 @@
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\ValueScope.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Empty.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Values\SetValue.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Wait.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Condition\CheckValue.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Condition\KeyDown.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Condition\KeyUp.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Decorator\Killer.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Decorator\ShowChoice.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Event\OnEnterTrigger.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Tools\ReflectionHelper.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Tools\Singleton.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\TriggerSystem\TriggerManager.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\TriggerSystem\TriggerObject.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\UI\UIChoiceDialog.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DialogSystem\Examples\Readme.txt" />
     <None Include="Assets\DialogSystem\System\Editor\Resources\Template\ActionScriptTemplate.txt" />
     <None Include="Assets\DialogSystem\System\Editor\Resources\Template\ConditionScriptTemplate.txt" />
     <None Include="Assets\DialogSystem\System\Editor\Resources\Template\DecoratorScriptTemplate.txt" />

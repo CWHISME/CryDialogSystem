@@ -144,14 +144,15 @@ namespace CryDialog.Runtime
                     _toRemoveNode.Add(node);
 
                     //单独处理Decorator节点运行
-                    //仅运行非单节点
-                    if (node is Decorator)
-                    {
-                        NodeModifier child = System.Array.Find<NodeModifier>(node.NextNodes, (n) => n.Parent == node);
-                        if (child != null)
-                            _toAddNode.Add(child);
-                    }
-                    else node.GetNextNodes(_toAddNode);
+                    //if (node is Decorator)
+                    //{
+                    //    //NodeModifier child = System.Array.Find<NodeModifier>(node.NextNodes, (n) => n.Parent == node);
+                    //    //if (child != null)
+                    //    //    _toAddNode.Add(child);
+                    //    (node as Decorator).GetNextNodesFromDecorator(_toAddNode);
+                    //}
+                    //else
+                    node.GetNextNodes(_toAddNode);
                 }
             }
 

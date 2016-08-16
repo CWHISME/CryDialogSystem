@@ -623,6 +623,8 @@ namespace CryDialog.Editor
                     LeftHeightSpace(6);
                     if (GUI.Button(rect, "+", ResourcesManager.GetInstance.skin.button))
                         Array.Resize<string>(ref array, array.Length + 1);
+                    if (array == null)
+                        array = new string[] { };
                     for (int j = 0; j < array.Length; j++)
                     {
                         rect = GetGUILeftScrollAreaRect(10, 160, 18, false);

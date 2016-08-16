@@ -38,6 +38,8 @@ namespace CryDialog.Runtime
             _SaveData = _dialog.Save();
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
+
+            UnityEditor.EditorUtility.DisplayDialog("Save", "Dialog Save Successfully!", "OK");
 #endif
         }
 
@@ -45,6 +47,7 @@ namespace CryDialog.Runtime
         {
             _dialog = new Dialog();
             _dialog.Load(_SaveData);
+            _dialog._name = name;
         }
 
     }

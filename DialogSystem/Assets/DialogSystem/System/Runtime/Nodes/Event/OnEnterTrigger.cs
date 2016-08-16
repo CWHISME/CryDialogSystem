@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace CryDialog.Runtime
 {
+    [Help("当指定Tag物体进入该区域中时。")]
     public class OnEnterTrigger : Event
     {
 

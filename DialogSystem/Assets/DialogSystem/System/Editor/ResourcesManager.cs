@@ -22,6 +22,8 @@ namespace CryDialog.Editor
 
         public GUIStyle StyleBackground { get { return skin.GetStyle("Background"); } }
 
+        public GUIStyle DefaultNode { get { return skin.GetStyle("DefaultNode"); } }
+        public GUIStyle DefaultNodeOn { get { return skin.GetStyle("DefaultNodeOn"); } }
         public GUIStyle EventNode { get { return skin.GetStyle("EventNode"); } }
         public GUIStyle EventNodeOn { get { return skin.GetStyle("EventNodeOn"); } }
         public GUIStyle ConditionNode { get { return skin.GetStyle("ConditionNode"); } }

@@ -5,6 +5,7 @@
 **********************************************************/
 
 using System;
+using System.Collections.Generic;
 
 namespace CryDialog.Runtime
 {
@@ -34,6 +35,11 @@ namespace CryDialog.Runtime
         {
             return EnumResult.Success;
         }
+
+        //public virtual void GetNextNodesFromDecorator(List<NodeModifier> nodes)
+        //{
+        //    GetNextNodes(nodes);
+        //}
 
         public virtual UnityEngine.Color ColorLine
         {

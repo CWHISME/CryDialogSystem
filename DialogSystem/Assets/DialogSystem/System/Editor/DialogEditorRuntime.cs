@@ -23,8 +23,8 @@ namespace CryDialog.Editor
             Vector2 pos = CalcRealPosition(node._position);
             Rect nodeRect = Tools.GetNodeRect(pos);
 
-            GUIStyle style = ResourcesManager.GetInstance.skin.box;
-            GUIStyle selectStyle = ResourcesManager.GetInstance.skin.box;
+            GUIStyle style = ResourcesManager.GetInstance.DefaultNode;
+            GUIStyle selectStyle = ResourcesManager.GetInstance.DefaultNodeOn;
             if (node is CryDialog.Runtime.Event)
             {
                 style = ResourcesManager.GetInstance.EventNode;
