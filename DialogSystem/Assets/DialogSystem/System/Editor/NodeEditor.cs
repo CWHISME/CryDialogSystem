@@ -399,9 +399,8 @@ namespace CryDialog.Editor
 
             Rect rect = new Rect(nodeRect);
             rect.position = new Vector2(rect.position.x, rect.position.y + rect.height);
-            GUIStyle style = ResourcesManager.GetInstance.GetFontStyle((int)(12 * Tools.Zoom));
-            style.clipping = TextClipping.Overflow;
-            style.wordWrap = true;
+
+            GUIStyle style = ResourcesManager.GetInstance.GetOverflowFontStyle(12);
 
             GUIContent con = new GUIContent(description);
             float height = style.CalcHeight(con, rect.width);

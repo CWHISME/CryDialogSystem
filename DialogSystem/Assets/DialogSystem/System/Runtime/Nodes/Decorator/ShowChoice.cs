@@ -5,6 +5,7 @@
 **********************************************************/
 
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace CryDialog.Runtime
@@ -54,6 +55,21 @@ namespace CryDialog.Runtime
             {
                 return new Color32(245, 255, 250, 255);
             }
+        }
+
+        public override string ToDescription()
+        {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < ChoicesList.Length; i++)
+            {
+                if (i >= _nextNodeList.Count)
+                {
+                    builder.AppendLine("<color=red>选择 [" + i + "." + ChoicesList[i] + "]无效！</color>");
+                    continue;
+                }
+                builder.AppendLine("[<color=#00FF7F>" + i + "</color>] " + ChoicesList[i] + "\n(运行节点 <color=#00FF7F>" + _nextNodeList[i]._name + "</color>)");
+            }
+            return builder.ToString();
         }
     }
 }

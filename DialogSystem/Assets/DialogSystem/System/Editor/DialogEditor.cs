@@ -47,16 +47,32 @@ namespace CryDialog.Editor
 
             style = new GUIStyle(style);
             selectStyle = new GUIStyle(selectStyle);
+            style.fontSize = 20;
+            selectStyle.fontSize = 20;
             style.fontSize = (int)(style.fontSize * Tools.Zoom);
             selectStyle.fontSize = (int)(selectStyle.fontSize * Tools.Zoom);
 
-            GUI.Box(nodeRect, coreNode ? "<color=#00FF00>" + node._name + "</color>" : node._name, _currentNode == node ? selectStyle : style);
+            style = _currentNode == node ? selectStyle : style;
 
-            DrawRunModeLable(node, nodeRect);
+            GUIContent des = new GUIContent((node as DialogNode).ToDescription());
 
-            DrawDescription(nodeRect, (node as DialogNode).ToDescription());
+            //计算额外描述高度
+            //GUIStyle desStyle = ResourcesManager.GetInstance.GetOverflowFontStyle(12);
+            //float height = desStyle.CalcHeight(des, nodeRect.width);
 
-            return nodeRect;
+            //Rect expandRect = new Rect(nodeRect);
+            //expandRect.height = nodeRect.height + height + 10;
+
+            Rect expandRect = Tools.GetNodeRect(pos, des.text);
+            GUI.Box(expandRect, coreNode ? "<color=#00FF00>" + node._name + "</color>" : node._name, style);
+
+            DrawRunModeLable(node, expandRect);
+
+            nodeRect.width = nodeRect.width - 10;
+            nodeRect.position = new Vector2(nodeRect.position.x + 5, nodeRect.position.y);
+            DrawDescription(nodeRect, des.text);
+
+            return expandRect;
         }
 
         private Vector2 _mousePosition;
@@ -76,7 +92,7 @@ namespace CryDialog.Editor
                             return;
                         }
 
-                        if (!Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position))))
+                        if (!Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position), (_currentHover as DialogNode).ToDescription())))
                             CreateNodeMenu();
                         else ShowDeleteNodeMenu();
                     }

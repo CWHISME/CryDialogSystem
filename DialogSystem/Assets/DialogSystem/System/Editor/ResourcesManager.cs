@@ -39,6 +39,14 @@ namespace CryDialog.Editor
             return fontStyle;
         }
 
+        public GUIStyle GetOverflowFontStyle(int fontSize)
+        {
+            GUIStyle style = GetFontStyle((int)(fontSize * Tools.Zoom));
+            style.clipping = TextClipping.Overflow;
+            style.wordWrap = true;
+            return style;
+        }
+
         public GUIStyle GetFontStyle(int fontSize, Color color)
         {
             fontStyle.normal.textColor = color;

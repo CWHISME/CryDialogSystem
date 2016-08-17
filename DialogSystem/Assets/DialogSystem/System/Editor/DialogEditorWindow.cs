@@ -146,6 +146,9 @@ namespace CryDialog.Editor
 
             _dialogObject._debugMode = EditorGUI.ToggleLeft(new Rect(10f, _titleHeight, _windowRect.xMax, _titleHeight), "Debug Mode", _dialogObject._debugMode);
 
+            //分割线
+            Handles.DrawLine(new Vector3(_windowRect.xMin, _windowRect.yMin + _topHeight, 0), new Vector3(_windowRect.xMax, _windowRect.yMin + _topHeight));
+
             //运行时不允许存储加载
             if (Application.isPlaying) return;
 
@@ -158,9 +161,6 @@ namespace CryDialog.Editor
             buttonStyle.normal.textColor = new Color32(0, 255, 0, 255);
             if (GUI.Button(new Rect(_contentRect.width - 90, 3, 80, _titleHeight - 3), "Save Story", buttonStyle))
                 _dialogObject.Save();
-
-            //Handles.color = Color.black;
-            Handles.DrawLine(new Vector3(_windowRect.xMin, _windowRect.yMin + _topHeight, 0), new Vector3(_windowRect.xMax, _windowRect.yMin + _topHeight));
         }
 
     }

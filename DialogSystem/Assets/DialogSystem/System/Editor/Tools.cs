@@ -81,5 +81,21 @@ namespace CryDialog.Editor
             return new Rect(realPos.x * zoom, realPos.y * zoom, _nodeWidth * zoom, _nodeHeight * zoom);
         }
 
+        public static Rect GetNodeRect(Vector2 realPos, string extraText)
+        {
+            float zoom = DialogEditorWindow.DialogWindow.Zoom;
+            Rect rect = new Rect(realPos.x * zoom, realPos.y * zoom, _nodeWidth * zoom, _nodeHeight * zoom);
+
+            GUIContent des = new GUIContent(extraText);
+
+            //计算额外描述高度
+            GUIStyle desStyle = ResourcesManager.GetInstance.GetOverflowFontStyle(12);
+            float height = desStyle.CalcHeight(des, rect.width);
+
+            rect.height = rect.height + height + 10;
+
+            return rect;
+        }
+
     }
 }

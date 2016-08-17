@@ -3,21 +3,26 @@
 *Date: 2016.8.16
 *Func:
 **********************************************************/
-using UnityEngine;
-using System.Collections;
 using CryDialog.Runtime;
 using System.Collections.Generic;
 
+/// <summary>
+/// 运行对话的一个管理器
+/// </summary>
+[System.Serializable]
 public class DialogManager
 {
     private Dialog _currentDialog;
 
     private List<Dialog> _dialogList = new List<Dialog>();
 
+    private bool _accomplish = false;
+
     public void Tick()
     {
-        if (_currentDialog == null) return;
-        _currentDialog.Tick();
+        if (_currentDialog == null || _accomplish) return;
+        if (_currentDialog.Tick() != EnumResult.Running)
+            _accomplish = true;
     }
 
     /// <summary>
@@ -29,6 +34,7 @@ public class DialogManager
         if (!dia) return;
         _dialogList.Clear();
         _currentDialog = dia.Dialog;
+        _accomplish = false;
     }
 
     /// <summary>
@@ -47,6 +53,7 @@ public class DialogManager
         _currentDialog = dialog.Dialog;
         //删除可能已存在与此的同一节点
         RemoveDialog(dialog);
+        _accomplish = false;
     }
 
     public void RemoveDialog(DialogObject dialog)
