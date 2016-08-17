@@ -93,6 +93,7 @@
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\ValueFunctor.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Enum\ValueScope.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Empty.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\ShowDialog.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Values\SetValue.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Action\Wait.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\Nodes\Condition\CheckValue.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Assets\DialogSystem\System\Runtime\TriggerSystem\TriggerManager.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\TriggerSystem\TriggerObject.cs" />
     <Compile Include="Assets\DialogSystem\System\Runtime\UI\UIChoiceDialog.cs" />
+    <Compile Include="Assets\DialogSystem\System\Runtime\UI\UIDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DialogSystem\Examples\Readme.txt" />

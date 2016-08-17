@@ -4,27 +4,29 @@
 *Func:
 **********************************************************/
 using UnityEngine;
-using System.Collections;
-using CryDialog.Runtime;
 
-/// <summary>
-/// Just for test
-/// </summary>
-public class DialogRunner : MonoBehaviour
+namespace CryDialog.Runtime
 {
-
-    public DialogObject _defaltDialog;
-
-    private DialogManager _dialogManager;
-
-    void Start()
+    /// <summary>
+    /// Just for test
+    /// </summary>
+    public class DialogRunner : MonoBehaviour
     {
-        _dialogManager = new DialogManager();
-        _dialogManager.LoadDialog(_defaltDialog);
-    }
 
-    void Update()
-    {
-        _dialogManager.Tick();
+        public DialogObject _defaltDialog;
+
+        private DialogManager _dialogManager;
+
+        void Start()
+        {
+            _dialogManager = new DialogManager();
+            _dialogManager.LoadDialog(_defaltDialog);
+        }
+
+        void Update()
+        {
+            _dialogManager.Tick();
+
+        }
     }
 }
