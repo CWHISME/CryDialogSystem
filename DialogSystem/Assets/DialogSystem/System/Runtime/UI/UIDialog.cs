@@ -13,48 +13,75 @@ namespace CryDialog.Runtime
     {
 
         public Text _content;
+        public GameObject _backGround;
 
-        private bool _show = false;
-        private List<string> _dialogList = new List<string>(5);
-        private int _index = 0;
-        private System.Action _callBack;
+        private Queue<Sentence> _sentenceQueue = new Queue<Sentence>();
+        private Sentence _currentSentence;
 
         void Update()
         {
-            if (!_show) return;
+            if (_currentSentence == null) return;
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 NextSentence();
         }
 
-        public void ShowDialog(string[] dialogArray, System.Action callBack)
+        /// <summary>
+        /// 显示一段对话接口
+        /// </summary>
+        /// <param name="dialogArray"></param>
+        /// <param name="callBack"></param>
+        public void ShowDialog(string name, string[] dialogArray, System.Action callBack)
         {
-            if (!_show)
+            Sentence sen = new Sentence(name, dialogArray, callBack);
+
+            ShowDialog(sen);
+        }
+
+        /// <summary>
+        /// 显示一段对话接口
+        /// </summary>
+        /// <param name="dialogArray"></param>
+        /// <param name="callBack"></param>
+        public void ShowDialog(Sentence sentence)
+        {
+            if (_currentSentence != null)
             {
-                _index = 0;
-                _dialogList.Clear();
+                _sentenceQueue.Enqueue(sentence);
+                return;
             }
-            _dialogList.AddRange(dialogArray);
-            _callBack = callBack;
-            _content.gameObject.SetActive(true);
-            _show = true;
+
+            SetUIActive(true);
+
+            _currentSentence = sentence;
 
             NextSentence();
         }
 
         private void NextSentence()
         {
-
-            if (_index >= _dialogList.Count)
+            if (_currentSentence.IsEnd())
             {
-                _show = false;
-                _content.gameObject.SetActive(false);
-                if (_callBack != null)
-                    _callBack.Invoke();
+                _currentSentence.InvokCallBack();
 
-                return;
+                if (_sentenceQueue.Count > 0)
+                {
+                    _currentSentence = _sentenceQueue.Dequeue();
+                }
+                else {
+                    SetUIActive(false);
+                    _currentSentence = null;
+                    return;
+                }
             }
-            _content.text = _dialogList[_index++];
+
+            _content.text = _currentSentence.GetCurrentString();
+        }
+
+        private void SetUIActive(bool act)
+        {
+            _content.gameObject.SetActive(act);
+            _backGround.SetActive(act);
         }
 
         private static UIDialog _instance;
@@ -78,7 +105,7 @@ namespace CryDialog.Runtime
                             _instance = go.GetComponent<UIDialog>();
                             RectTransform rect = (_instance.transform as RectTransform);
                             rect.anchoredPosition = Vector2.zero;
-                            rect.sizeDelta = Vector2.zero;
+                            rect.sizeDelta = new Vector2(0, 150);
                         }
                     }
                 }
@@ -98,5 +125,39 @@ namespace CryDialog.Runtime
             return canvas.gameObject;
         }
 
+    }
+
+    public class Sentence
+    {
+        private string _name;
+        private bool _haveName;
+        private string[] _dialogList;
+        private int _index = 0;
+        private System.Action _callBack;
+
+        public Sentence(string name, string[] dialogArray, System.Action callBack)
+        {
+            _name = name;
+            _haveName = string.IsNullOrEmpty(_name);
+            _dialogList = dialogArray;
+            _index = 0;
+            _callBack = callBack;
+        }
+
+        public bool IsEnd()
+        {
+            return _index >= _dialogList.Length;
+        }
+
+        public string GetCurrentString()
+        {
+            return _haveName ? _name + ": " + _dialogList[_index++] : _dialogList[_index++];
+        }
+
+        public void InvokCallBack()
+        {
+            if (_callBack != null)
+                _callBack.Invoke();
+        }
     }
 }

@@ -5,6 +5,7 @@
 **********************************************************/
 using UnityEngine;
 using CryDialog.Runtime;
+using UnityEditor;
 
 namespace CryDialog.Editor
 {
@@ -62,6 +63,14 @@ namespace CryDialog.Editor
             GUI.Box(expandRect, coreNode ? "<color=#00FF00>" + node._name + "</color>" : node._name, style);
 
             DragNodeEvent(node, expandRect);
+
+            //处理分割线
+            float seperateHeight = 40 * Tools.Zoom;
+            Color handleColor = Handles.color;
+            if (_currentNode != node && !Tools.IsValidMouseAABB(expandRect))
+                Handles.color = Color.black;
+            Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight));
+            Handles.color = handleColor;
 
             DrawRunModeLable(node, nodeRect);
 

@@ -66,6 +66,14 @@ namespace CryDialog.Editor
             Rect expandRect = Tools.GetNodeRect(pos, des.text);
             GUI.Box(expandRect, coreNode ? "<color=#00FF00>" + node._name + "</color>" : node._name, style);
 
+            //处理分割线
+            float seperateHeight = 40 * Tools.Zoom;
+            Color handleColor = Handles.color;
+            if (_currentNode != node && !Tools.IsValidMouseAABB(expandRect))
+                Handles.color = Color.black;
+            Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight));
+            Handles.color = handleColor;
+
             DrawRunModeLable(node, expandRect);
 
             nodeRect.width = nodeRect.width - 10;
@@ -73,6 +81,25 @@ namespace CryDialog.Editor
             DrawDescription(nodeRect, des.text);
 
             return expandRect;
+        }
+
+        protected override void ShowConnectLine()
+        {
+            if (_isConnecting && _currentNode != null)
+            {
+                Vector2 pos1 = new Vector2(_currentNodeRect.max.x, _currentNodeRect.min.y + Tools.NodeHalfHeightZoomed);
+                Tools.DrawBazier(pos1, Event.current.mousePosition);
+                if (Tools.MouseUp)
+                {
+                    _isConnecting = false;
+                    if (_currentNode == _currentHover) return;
+                    string des = (_currentHover as DialogNode).ToDescription();
+                    if (Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position), des)))
+                    {
+                        LinkCurrentNode();
+                    }
+                }
+            }
         }
 
         private Vector2 _mousePosition;
@@ -199,6 +226,7 @@ namespace CryDialog.Editor
                 node._position = pos;
                 node.SetID(content.GenerateID());
                 Runtime.NodeModifier.SetContent(node, content);
+                _currentNode = node;
             }
         }
     }

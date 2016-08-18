@@ -33,12 +33,12 @@ namespace CryDialog.Editor
             _contentRect = window._contentRect;
             _window = window;
 
+            //========Left Slider Area===========
+            ShowLeftSliderArea();
             //========Right Area===============
             DrawRightGrid();
             DrawNodes(nodes, true);
             ShowConnectLine();
-            //========Left Slider Area===========
-            ShowLeftSliderArea();
             //Make graph dragable
             DragGraph();
             //Quilk Key
@@ -63,7 +63,7 @@ namespace CryDialog.Editor
             }
         }
 
-        private void ShowConnectLine()
+        protected virtual void ShowConnectLine()
         {
             if (_isConnecting && _currentNode != null)
             {
@@ -75,31 +75,36 @@ namespace CryDialog.Editor
                     if (_currentNode == _currentHover) return;
                     if (Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position))))
                     {
-                        //强制链接单节点
-                        if (Event.current.control)
-                        {
-                            _currentNode.AddNextNode(_currentHover);
-                            return;
-                        }
-
-                        if (!_currentHover.CanSetParent(_currentNode))
-                        {
-                            //if (_currentNode.IsParent(_currentHover))
-                            if (!_currentNode.HaveParentNodeInNext())
-                            {
-                                _currentNode.AddNextNode(_currentHover);
-                                return;
-                            }
-
-                            EditorUtility.DisplayDialog("Error", "Not allow connect to twice parent! You must break one connect with parent and then change it.", "OK");
-                            return;
-                        }
-
-                        if (NodeModifier.SetParent(_currentHover, _currentNode))
-                            OnLinkNode(_currentNode, _currentHover);
+                        LinkCurrentNode();
                     }
                 }
             }
+        }
+
+        protected void LinkCurrentNode()
+        {
+            //强制链接单节点
+            if (Event.current.control)
+            {
+                _currentNode.AddNextNode(_currentHover);
+                return;
+            }
+
+            if (!_currentHover.CanSetParent(_currentNode))
+            {
+                //if (_currentNode.IsParent(_currentHover))
+                if (!_currentNode.HaveParentNodeInNext())
+                {
+                    _currentNode.AddNextNode(_currentHover);
+                    return;
+                }
+
+                EditorUtility.DisplayDialog("Error", "Not allow connect to twice parent! You must break one connect with parent and then change it.", "OK");
+                return;
+            }
+
+            if (NodeModifier.SetParent(_currentHover, _currentNode))
+                OnLinkNode(_currentNode, _currentHover);
         }
 
         private void ShowGraphCenterInfo()
