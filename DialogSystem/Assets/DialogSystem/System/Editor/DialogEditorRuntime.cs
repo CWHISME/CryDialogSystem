@@ -69,6 +69,7 @@ namespace CryDialog.Editor
             Color handleColor = Handles.color;
             if (_currentNode != node && !Tools.IsValidMouseAABB(expandRect))
                 Handles.color = Color.black;
+            Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight - 2, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight - 2));
             Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight));
             Handles.color = handleColor;
 

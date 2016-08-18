@@ -131,27 +131,33 @@ namespace CryDialog.Editor
             EditorGUI.LabelField(new Rect(btnW, 0, _windowRect.xMax, _titleHeight), new GUIContent(" Dialog Editor" + "->" + _dialogObject.name), style);
 
             GUIStyle buttonStyle = new GUIStyle(ResourcesManager.GetInstance.skin.button);
-            if (GUI.Button(new Rect(_contentRect.width - 270, 3, 80, _titleHeight - 3), "Values", buttonStyle))
+            if (GUI.Button(new Rect(_contentRect.width - 180, 3, 80, _titleHeight - 3), "Values", buttonStyle))
             {
                 ValueManagerWindow.Open();
+            }
+
+            if (GUI.Button(new Rect(_contentRect.width - 90, 3, 80, _titleHeight - 3), "About", buttonStyle))
+            {
+                About.ShowAbout();
             }
 
             _dialogObject._debugMode = EditorGUI.ToggleLeft(new Rect(10f, _titleHeight, _windowRect.xMax, _titleHeight), "Debug Mode", _dialogObject._debugMode);
 
             //分割线
+            Handles.DrawLine(new Vector3(_windowRect.xMin, _windowRect.yMin + _topHeight - 2, 0), new Vector3(_windowRect.xMax, _windowRect.yMin + _topHeight - 2));
             Handles.DrawLine(new Vector3(_windowRect.xMin, _windowRect.yMin + _topHeight, 0), new Vector3(_windowRect.xMax, _windowRect.yMin + _topHeight));
 
             //运行时不允许存储加载
             if (Application.isPlaying) return;
 
             buttonStyle.normal.textColor = new Color32(255, 64, 180, 255);
-            if (GUI.Button(new Rect(_contentRect.width - 180, 3, 80, _titleHeight - 3), "Reload", buttonStyle))
+            if (GUI.Button(new Rect(_contentRect.width - 270, 3, 80, _titleHeight - 3), "Reload", buttonStyle))
             {
                 _dialogObject.Load();
             }
 
             buttonStyle.normal.textColor = new Color32(0, 255, 0, 255);
-            if (GUI.Button(new Rect(_contentRect.width - 90, 3, 80, _titleHeight - 3), "Save Story", buttonStyle))
+            if (GUI.Button(new Rect(_contentRect.width - 360, 3, 80, _titleHeight - 3), "Save Story", buttonStyle))
                 _dialogObject.Save();
         }
 
