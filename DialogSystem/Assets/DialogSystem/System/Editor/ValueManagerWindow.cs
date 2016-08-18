@@ -54,7 +54,7 @@ namespace CryDialog.Editor
             DialogObject dialog = Selection.activeObject as DialogObject;
             if (dialog == null)
             {
-                EditorGUILayout.LabelField("Not select story!");
+                EditorGUILayout.LabelField("Not select dialog!");
                 return;
             }
             if (dialog.Dialog != null)

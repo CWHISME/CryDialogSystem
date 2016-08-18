@@ -94,14 +94,6 @@ namespace CryDialog.Editor
             ShowVersion();
         }
 
-        private void AboutPage()
-        {
-            EditorGUI.LabelField(new Rect(_windowRect.center.x - 100, _windowRect.center.y - 100, 300, 20), "Cry Dialog System", ResourcesManager.GetInstance.skin.GetStyle("Title"));
-            EditorGUI.LabelField(new Rect(_windowRect.center.x - 33, _windowRect.center.y - 50, 500, 20), "By CWHISME");
-            EditorGUI.LabelField(new Rect(_windowRect.center.x - 55, _windowRect.center.y - 20, 500, 20), "Email: cwhisme@qq.com");
-            EditorGUI.LabelField(new Rect(_windowRect.center.x - 20, _windowRect.center.y, 500, 20), Version.FullVersion);
-        }
-
         private void MainPage()
         {
             EditorGUI.DrawTextureTransparent(_contentRect, ResourcesManager.GetInstance.texBackground);
