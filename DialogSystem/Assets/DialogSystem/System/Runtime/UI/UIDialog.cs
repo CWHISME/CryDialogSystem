@@ -138,7 +138,7 @@ namespace CryDialog.Runtime
         public Sentence(string name, string[] dialogArray, System.Action callBack)
         {
             _name = name;
-            _haveName = string.IsNullOrEmpty(_name);
+            _haveName = !string.IsNullOrEmpty(_name);
             _dialogList = dialogArray;
             _index = 0;
             _callBack = callBack;
@@ -151,7 +151,7 @@ namespace CryDialog.Runtime
 
         public string GetCurrentString()
         {
-            return _haveName ? _name + ": " + _dialogList[_index++] : _dialogList[_index++];
+            return _haveName ? _name + ":" + _dialogList[_index++] : _dialogList[_index++];
         }
 
         public void InvokCallBack()

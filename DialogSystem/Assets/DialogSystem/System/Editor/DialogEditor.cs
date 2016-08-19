@@ -54,7 +54,7 @@ namespace CryDialog.Editor
 
             style = _currentNode == node ? selectStyle : style;
 
-            GUIContent des = new GUIContent((node as DialogNode).ToDescription());
+            GUIContent des = GetDescription(node);
 
             //计算额外描述高度
             //GUIStyle desStyle = ResourcesManager.GetInstance.GetOverflowFontStyle(12);
@@ -71,7 +71,7 @@ namespace CryDialog.Editor
             Color handleColor = Handles.color;
             if (_currentNode != node && !Tools.IsValidMouseAABB(expandRect))
                 Handles.color = Color.black;
-            Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight-2, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight-2));
+            Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight - 2, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight - 2));
             Handles.DrawLine(new Vector3(expandRect.position.x, expandRect.position.y + seperateHeight, 0), new Vector3(expandRect.xMax, expandRect.yMin + seperateHeight));
             Handles.color = handleColor;
 
@@ -94,12 +94,24 @@ namespace CryDialog.Editor
                 {
                     _isConnecting = false;
                     if (_currentNode == _currentHover) return;
-                    string des = (_currentHover as DialogNode).ToDescription();
+                    string des = GetDescription(_currentHover).text;
                     if (Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position), des)))
                     {
                         LinkCurrentNode();
                     }
                 }
+            }
+        }
+
+        private GUIContent GetDescription(NodeModifier node)
+        {
+            try
+            {
+                return new GUIContent((node as DialogNode).ToDescription());
+            }
+            catch (System.Exception)
+            {
+                return new GUIContent();
             }
         }
 
@@ -120,7 +132,7 @@ namespace CryDialog.Editor
                             return;
                         }
 
-                        if (!Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position), (_currentHover as DialogNode).ToDescription())))
+                        if (!Tools.IsValidMouseAABB(Tools.GetNodeRect(CalcRealPosition(_currentHover._position), GetDescription(_currentHover).text)))
                             CreateNodeMenu();
                         else ShowDeleteNodeMenu();
                     }

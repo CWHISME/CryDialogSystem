@@ -51,7 +51,7 @@ namespace CryDialog.Editor
 
             style = _currentNode == node ? selectStyle : style;
 
-            GUIContent des = new GUIContent((node as DialogNode).ToDescription());
+            GUIContent des = GetDescription(node);
 
             //计算额外描述高度
             //GUIStyle desStyle = ResourcesManager.GetInstance.GetOverflowFontStyle(12);
@@ -80,9 +80,21 @@ namespace CryDialog.Editor
 
             nodeRect.width = nodeRect.width - 10;
             nodeRect.position = new Vector2(nodeRect.position.x + 5, nodeRect.position.y);
-            DrawDescription(nodeRect, (node as DialogNode).ToDescription());
+            DrawDescription(nodeRect, des.text);
 
             return expandRect;
+        }
+
+        private GUIContent GetDescription(NodeModifier node)
+        {
+            try
+            {
+                return new GUIContent((node as DialogNode).ToDescription());
+            }
+            catch (System.Exception)
+            {
+                return new GUIContent();
+            }
         }
 
 

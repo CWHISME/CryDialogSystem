@@ -23,7 +23,10 @@ namespace CryDialog.Runtime
                     for (int i = 0; i < nextNode.Length; i++)
                     {
                         if (nextNode[i].Parent != this)
+                        {
+                            nextNode[i].ForceStop();
                             content.RemoveContenNode(nextNode[i]);
+                        }
                     }
                     break;
                 case KillMode.NodeAndChild:
@@ -42,7 +45,9 @@ namespace CryDialog.Runtime
 
         protected void RemoveChild(NodeContent content, NodeModifier node)
         {
-            content.RemoveContenNode(node);
+            if (content.RemoveContenNode(node))
+                node.ForceStop();
+
             NodeModifier[] nodes = node.NextNodes;
             for (int i = 0; i < nodes.Length; i++)
             {

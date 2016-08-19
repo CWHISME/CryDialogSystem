@@ -33,12 +33,13 @@ namespace CryDialog.Editor
             _contentRect = window._contentRect;
             _window = window;
 
-            //========Left Slider Area===========
-            ShowLeftSliderArea();
             //========Right Area===============
             DrawRightGrid();
             DrawNodes(nodes, true);
             ShowConnectLine();
+            //========Left Slider Area===========
+            ShowLeftSliderArea();
+
             //Make graph dragable
             DragGraph();
             //Quilk Key
@@ -622,6 +623,14 @@ namespace CryDialog.Editor
                     filed.SetValue(o, EditorGUI.Toggle(rect, (bool)filed.GetValue(o)));
                     break;
                 case "System.String[]":
+                    //高级编辑功能
+                    rect = GetGUILeftScrollAreaRect(80, 90, 20, false);
+                    if (GUI.Button(rect, "<color=#00FF00>Advance Edit</color>", ResourcesManager.GetInstance.skin.button))
+                    {
+                        AdvanceStringArrayEditor.Open(o, filed);
+                    }
+
+                    //通常编辑功能
                     string[] array = filed.GetValue(o) as string[];
                     rect = GetGUILeftScrollAreaRect(175, 20, 18);
                     LeftHeightSpace(6);

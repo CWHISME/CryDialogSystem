@@ -59,7 +59,7 @@ namespace CryDialog.Editor
             }
             if (dialog.Dialog != null)
             {
-                EditorGUILayout.BeginVertical(GUILayout.Width(300));
+                EditorGUILayout.BeginVertical();
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("<color=#FF00FF>" + dialog.name + "</color>", ResourcesManager.GetInstance.GetFontStyle(18));
