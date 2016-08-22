@@ -55,12 +55,14 @@ namespace CryDialog.Editor
             EditorGUILayout.BeginHorizontal(GUI.skin.box);
             if (GUILayout.Button("Text Convert To Array <color=#00FF00>↓↓</color>", ResourcesManager.GetInstance.skin.button))
             {
+                EditorGUIUtility.editingTextField = false;
                 _valueList.Clear();
                 _valueList.AddRange(TextToArray(_valueText, "\n"));
             }
-        
+
             if (GUILayout.Button("Array Convert To Text <color=#EE82EE>↑↑</color>", ResourcesManager.GetInstance.skin.button))
             {
+                EditorGUIUtility.editingTextField = false;
                 _valueText = ArrayToText(_valueList.ToArray());
             }
             EditorGUILayout.EndHorizontal();
@@ -72,7 +74,7 @@ namespace CryDialog.Editor
             {
                 EditorGUILayout.BeginHorizontal();
                 //GUILayout.LabelField((i + 1) + ". ");
-                _valueList[i] = EditorGUILayout.TextField(_valueList[i]);
+                _valueList[i] = EditorGUILayout.TextField(_valueList[i], GUILayout.Height(20));
                 if (GUILayout.Button("<color=red>X</color>", ResourcesManager.GetInstance.skin.button, GUILayout.Width(20), GUILayout.Height(20)))
                 {
                     _valueList.RemoveAt(i);
@@ -88,6 +90,7 @@ namespace CryDialog.Editor
                         _valueList[index] = _valueList[i];
                         _valueList[i] = temp;
                     }
+                    EditorGUIUtility.editingTextField = false;
                     break;
                 }
 
@@ -100,6 +103,7 @@ namespace CryDialog.Editor
                         _valueList[index] = _valueList[i];
                         _valueList[i] = temp;
                     }
+                    EditorGUIUtility.editingTextField = false;
                     break;
                 }
 
@@ -111,6 +115,8 @@ namespace CryDialog.Editor
 
             if (GUILayout.Button("<color=#00FF00>Save</color>", ResourcesManager.GetInstance.skin.button, GUILayout.Width(100), GUILayout.Height(50)))
             {
+                EditorGUIUtility.editingTextField = false;
+
                 if (!HaveTarget())
                 {
                     EditorUtility.DisplayDialog("Error!", "Save Failed! The Value Target Was Lost!", "OK");
@@ -138,7 +144,10 @@ namespace CryDialog.Editor
             {
                 builder.AppendLine(array[i]);
             }
-            return builder.ToString();
+
+            string txt = builder.ToString();
+            txt = txt.Remove(txt.Length - 1);
+            return txt;
         }
 
         private string[] TextToArray(string text, params string[] spltChar)
