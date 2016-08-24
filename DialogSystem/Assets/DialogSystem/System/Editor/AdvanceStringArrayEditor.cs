@@ -146,7 +146,8 @@ namespace CryDialog.Editor
             }
 
             string txt = builder.ToString();
-            txt = txt.Remove(txt.Length - 1);
+            if (txt.Length > 1)
+                txt = txt.Remove(txt.Length - 1);
             return txt;
         }
 

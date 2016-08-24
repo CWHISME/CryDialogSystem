@@ -376,7 +376,7 @@ namespace CryDialog.Runtime
                         UnityEngine.Debug.LogError("Error: The Mission Node [" + fullName + "] Was Lost!");
 #endif
                         //return;
-                        node = ReflectionHelper.CreateInstance<NodeModifier>("CryStory.Runtime._MissingNode");
+                        node = ReflectionHelper.CreateInstance<NodeModifier>("CryDialog.Runtime._MissingNode");
                     }
 
                     SetParent(node, this);

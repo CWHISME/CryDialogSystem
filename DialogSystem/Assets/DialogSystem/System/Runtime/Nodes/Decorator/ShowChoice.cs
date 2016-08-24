@@ -15,7 +15,6 @@ namespace CryDialog.Runtime
     {
         public bool AutoAddNumber = false;
         public string[] ChoicesList;
-
         private bool _show = false;
         private int _selectIndex = -1;
 

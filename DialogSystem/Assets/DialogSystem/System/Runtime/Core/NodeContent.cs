@@ -255,7 +255,7 @@ namespace CryDialog.Runtime
                 NodeModifier node = ReflectionHelper.CreateInstance<NodeModifier>(fullName);
                 if (node == null)
                 {
-                    node = ReflectionHelper.CreateInstance<NodeModifier>("CryDialog.Runtime.MissingNode");
+                    node = ReflectionHelper.CreateInstance<NodeModifier>("CryDialog.Runtime._MissingNode");
                     //It's mission
                     //return;
                 }
