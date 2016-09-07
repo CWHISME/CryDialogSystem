@@ -318,7 +318,10 @@ namespace CryDialog.Editor
                 //Draw conection bazier line
                 if (node is Decorator)
                 {
-                    DrawBazierLine(node, (node as Decorator).ColorLine);
+                    Decorator dec = node as Decorator;
+                    DrawBazierLine(node, dec.ColorLine);
+                    if (dec.DrawOrder)
+                        DrawOrder(node, dec.ColorLine);
                 }
                 else
                     DrawBazierLine(node);
@@ -341,6 +344,22 @@ namespace CryDialog.Editor
         protected virtual void DrawBazierLine(NodeModifier node)
         {
             DrawBazierLine(node, Color.green);
+        }
+
+        protected virtual void DrawOrder(NodeModifier node, Color color)
+        {
+            NodeModifier[] nextNodes = node.NextNodes;
+            for (int j = 0; j < nextNodes.Length; j++)
+            {
+                NodeModifier node2 = nextNodes[j];
+                Vector2 pos2 = CalcRealPosition(new Vector2(node2._position.x, node2._position.y));
+                pos2 *= Tools.Zoom;
+                float w = 50f * Tools.Zoom;
+                pos2.x = pos2.x - w;
+                pos2.y += Tools.NodeHalfHeightZoomed;
+
+                GUI.Label(new Rect(pos2, new Vector2(w, w)), "(" + (j + 1) + ")", ResourcesManager.GetInstance.GetFontStyle(13, color));
+            }
         }
 
         protected virtual void DrawBazierLine(NodeModifier node, Color color)

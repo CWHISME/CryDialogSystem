@@ -45,5 +45,10 @@ namespace CryDialog.Runtime
         {
             get { return UnityEngine.Color.white; }
         }
+
+        public virtual bool DrawOrder
+        {
+            get { return false; }
+        }
     }
 }

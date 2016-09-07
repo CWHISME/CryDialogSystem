@@ -56,6 +56,14 @@ namespace CryDialog.Runtime
             }
         }
 
+        public override bool DrawOrder
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         public override string ToDescription()
         {
             StringBuilder builder = new StringBuilder();
@@ -66,7 +74,7 @@ namespace CryDialog.Runtime
                     builder.AppendLine("<color=red>选择 [" + i + "." + ChoicesList[i] + "]无效！</color>");
                     continue;
                 }
-                builder.AppendLine("[<color=#00FF7F>" + i + "</color>] " + ChoicesList[i] + "\n(运行节点 <color=#00FF7F>" + _nextNodeList[i]._name + "</color>)");
+                builder.AppendLine("[<color=#00FF7F>" + (i + 1) + "</color>] " + ChoicesList[i] + "\n(运行节点 <color=#00FF7F>" + _nextNodeList[i]._name + "</color>)");
             }
             return builder.ToString();
         }
