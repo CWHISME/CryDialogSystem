@@ -8,6 +8,10 @@
 例：
 	首先假设游戏中，每个NPC均有自己的默认对话，我们可以在编辑初始时，便将其赋给NPC。（我以前玩过的不少RPG游戏，流程似乎都是这样），当受到剧情的影响，该对话内容需要出现改变，直接再通过StoryEditor更改需要改变对话内容的“主要”NPC，这样，其余普通NPC的对话则不受影响。这样，通过任务故事流程，方便地一步步更新所需对话。
 
-# 详情
+### 详情
 
 在本人个人Blog上，有更详细的说明，地址：[http://www.cwhisme.com/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem](http://www.cwhisme.com/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem)
+
+### 界面
+
+![主界面](http://7xp0w0.com1.z0.glb.clouddn.com/%5B2016.10.26%5DMainPage.png)
