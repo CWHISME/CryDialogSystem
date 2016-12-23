@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace CryStory.Example
+namespace CryDialog.Example
 {
     public class PlayerController : MonoBehaviour
     {
