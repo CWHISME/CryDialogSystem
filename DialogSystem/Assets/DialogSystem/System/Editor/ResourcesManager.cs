@@ -57,20 +57,20 @@ namespace CryDialog.Editor
         public ResourcesManager()
         {
             if (texInputSlot == null)
-                texInputSlot = Resources.Load("Image/Slot/input_slot") as Texture2D;
+                texInputSlot = Resources.Load("CryDialogSystem/Image/Slot/input_slot") as Texture2D;
             if (texInputSlotActive == null)
-                texInputSlotActive = Resources.Load("Image/Slot/input_slot_active") as Texture2D;
+                texInputSlotActive = Resources.Load("CryDialogSystem/Image/Slot/input_slot_active") as Texture2D;
             if (texOutputSlot == null)
-                texOutputSlot = Resources.Load("Image/Slot/output_slot") as Texture2D;
+                texOutputSlot = Resources.Load("CryDialogSystem/Image/Slot/output_slot") as Texture2D;
             if (texOutputSlotActive == null)
-                texOutputSlotActive = Resources.Load("Image/Slot/output_slot_active") as Texture2D;
+                texOutputSlotActive = Resources.Load("CryDialogSystem/Image/Slot/output_slot_active") as Texture2D;
             if (texGrid == null)
-                texGrid = Resources.Load("Image/grid") as Texture2D;
+                texGrid = Resources.Load("CryDialogSystem/Image/grid") as Texture2D;
             if (texWhiteBorder == null)
-                texWhiteBorder = Resources.Load("WhiteBorder") as Texture2D;
+                texWhiteBorder = Resources.Load("CryDialogSystem/WhiteBorder") as Texture2D;
             if (texBackground == null)
-                texBackground = Resources.Load("Background") as Texture2D;
-            if (skin == null) skin = Resources.Load<GUISkin>("Skin");
+                texBackground = Resources.Load("CryDialogSystem/Background") as Texture2D;
+            if (skin == null) skin = Resources.Load<GUISkin>("CryDialogSystem/Skin");
         }
 
     }
