@@ -8,6 +8,8 @@ using UnityEngine;
 
 namespace CryDialog.Runtime
 {
+
+    [CreateAssetMenu(fileName = "New Dialog", menuName = "Cry Dialog/Create New Dialog")]
     public class DialogObject : ScriptableObject
     {
         public byte[] _SaveData;
