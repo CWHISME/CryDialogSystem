@@ -27,7 +27,8 @@ namespace CryDialog.Runtime
             {
                 result = OnUpdate();
             }
-            else {
+            else
+            {
                 _running = true;
                 result = OnStart();
                 if (result == EnumResult.Success)
@@ -38,12 +39,18 @@ namespace CryDialog.Runtime
 
             if (result != EnumResult.Running)
             {
-                OnEnd();
-                _isInit = false;
+                StopRunning();
                 return result;
             }
 
             return EnumResult.Running;
+        }
+
+        public void StopRunning()
+        {
+            OnEnd();
+            _isInit = false;
+            _running = false;
         }
 
         /// <summary>

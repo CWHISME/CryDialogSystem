@@ -227,7 +227,8 @@ namespace CryDialog.Runtime
                     w.Write(_contenNodeList[i]._id);
                 }
             }
-            else {
+            else
+            {
                 //未运行节点，直接保存当前节点即可
                 w.Write(_contenNodeList.Count);
                 for (int i = 0; i < _contenNodeList.Count; i++)
@@ -244,6 +245,9 @@ namespace CryDialog.Runtime
 
         protected override void OnLoaded(BinaryReader r)
         {
+            //清空当前容器节点，避免被重复添加
+            _contenNodeList.Clear();
+
             base.OnLoaded(r);
             bool running = r.ReadBoolean();
 

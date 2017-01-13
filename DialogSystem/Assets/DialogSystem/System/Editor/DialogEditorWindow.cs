@@ -98,7 +98,9 @@ namespace CryDialog.Editor
         {
             EditorGUI.DrawTextureTransparent(_contentRect, ResourcesManager.GetInstance.texBackground);
 
-            if (Application.isPlaying) DialogEditorRuntime.GetInstance.OnGUI(this, _Dialog.Nodes);
+            //发现Dialog可不一定一定是使用的DialogObject的引用，所以有问题
+            //暂时没时间管了
+            if (Application.isPlaying) return; //DialogEditorRuntime.GetInstance.OnGUI(this, _Dialog.Nodes);
             else DialogEditor.GetInstance.OnGUI(this, _Dialog.Nodes);
 
 

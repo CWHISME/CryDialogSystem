@@ -52,6 +52,14 @@ namespace CryDialog.Runtime
             _dialog._name = name;
         }
 
+        public Dialog GetNewDialogFromData()
+        {
+            Dialog dialog = new Dialog();
+            dialog.Load(_SaveData);
+            dialog._name = name;
+            return dialog;
+        }
+
     }
 
 
