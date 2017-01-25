@@ -51,6 +51,11 @@ namespace CryDialog.Editor
             InternalOnGUI();
         }
 
+        public void Reset()
+        {
+            _currentNode = null;
+        }
+
         private void QuilkKey()
         {
             if (_currentNode == null) return;
@@ -636,6 +641,10 @@ namespace CryDialog.Editor
                     filed.SetValue(o, EditorGUI.IntField(rect, (int)filed.GetValue(o)));
                     break;
                 case "System.String":
+                    HeightAttribute height = Attribute.GetCustomAttribute(filed, typeof(HeightAttribute)) as HeightAttribute;
+                    if (height != null)
+                        rect = GetGUILeftScrollAreaRect(60, rect.width, height.Height, true);
+
                     filed.SetValue(o, EditorGUI.TextField(rect, (string)filed.GetValue(o)));
                     break;
                 case "System.Boolean":

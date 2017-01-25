@@ -21,15 +21,17 @@ namespace CryDialog.Editor
                 DialogWindow.Show();
                 return;
             }
-            DialogWindow = EditorWindow.CreateInstance<DialogEditorWindow>();
+            DialogWindow = EditorWindow.GetWindow<DialogEditorWindow>();
             DialogWindow.titleContent = new GUIContent("Dialog Editor");
-            float h = Screen.height * 0.7f;
-            float w = Screen.width * 0.7f;
-            DialogWindow.position = new Rect(Screen.width - w, Screen.height - h, w, h);
+            //float h = Screen.height * 0.7f;
+            //float w = Screen.width * 0.7f;
+            //DialogWindow.position = new Rect(Screen.width - w, Screen.height - h, w, h);
+            //DialogWindow.position=new 
 
             DialogWindow.Show();
         }
 
+        private DialogObject _lastDialogObject;
         public DialogObject _dialogObject;
         public Dialog _Dialog { get { return _dialogObject.Dialog; } }
         public Vector2 CurrentContentCenter
@@ -83,7 +85,16 @@ namespace CryDialog.Editor
             _contentRect = new Rect(_leftWidth, _topHeight, position.width, position.height);
 
             //========Story Editor ==============
-            if (MainPageEditor.GetInstance.OnGUI(this)) return;
+            if (MainPageEditor.GetInstance.OnGUI(this))
+            {
+                return;
+            }
+
+            if (_lastDialogObject != _dialogObject)
+            {
+                _lastDialogObject = _dialogObject;
+                DialogEditor.GetInstance.Reset();
+            }
 
             //Show Pages
             MainPage();
@@ -159,7 +170,7 @@ namespace CryDialog.Editor
             }
 
             buttonStyle.normal.textColor = new Color32(0, 255, 0, 255);
-            if (GUI.Button(new Rect(_contentRect.width - 360, 3, 80, _titleHeight - 3), "Save Story", buttonStyle))
+            if (GUI.Button(new Rect(_contentRect.width - 360, 3, 80, _titleHeight - 3), "Save Dialog", buttonStyle))
                 _dialogObject.Save();
         }
 
