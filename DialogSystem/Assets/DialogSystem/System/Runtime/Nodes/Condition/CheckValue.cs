@@ -24,5 +24,10 @@ namespace CryDialog.Runtime
                 return v.Compare(Value, Compare);
             return false;
         }
+
+        public override string ToDescription()
+        {
+            return "检查变量 [" + ValueName + "] " + Compare + " " + Value;
+        }
     }
 }

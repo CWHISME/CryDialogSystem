@@ -20,7 +20,7 @@ namespace CryDialog.Runtime
         /// <summary>
         /// 运行节点的模式
         /// </summary>
-        public EnumRunMode RunMode = EnumRunMode.UntilSuccess;
+        public EnumRunMode RunMode = EnumRunMode.StopNodeList;
 
         /// <summary>
         /// 父节点引用
@@ -367,7 +367,8 @@ namespace CryDialog.Runtime
                             _nextNodeList.Add(child);
                     };
                 }
-                else {
+                else
+                {
                     string fullName = r.ReadString();
                     node = ReflectionHelper.CreateInstance<NodeModifier>(fullName);
                     if (node == null)
