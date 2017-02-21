@@ -11,6 +11,7 @@ using UnityEngine;
 namespace CryDialog.Runtime
 {
     [Help("显示一个选项，当选择相应选项之后，会运行接下来相应节点（比如选择2->只运行第二根连线节点），所以，该节点运行完毕后，只会执行一个子节点。")]
+    [Category("System")]
     public class ShowChoice : Decorator
     {
         public bool AutoAddNumber = false;
