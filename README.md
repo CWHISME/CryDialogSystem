@@ -10,7 +10,7 @@
 
 ### 详情
 
-在本人个人Blog上，有更详细的说明，地址：[http://www.cwhisme.com/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem](http://www.cwhisme.com/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem)
+在本人个人Blog上，有更详细的说明，地址：[http://cwhisme.coding.me/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem](http://cwhisme.coding.me/2016/10/29/%E4%BD%9C%E5%93%81-CryDialogSystem)
 
 ### 界面
 
